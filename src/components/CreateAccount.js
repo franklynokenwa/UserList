@@ -112,7 +112,7 @@ const CreateAccount = () => {
 
   return (
     <StyledCreateAccount>
-      <h2>Create an account</h2>
+      <h2>Create account</h2>
       <form onSubmit={submitForm}>
         <input
           type="text"
