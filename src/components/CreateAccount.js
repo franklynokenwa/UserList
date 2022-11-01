@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import AccountStore from "./AccountStore";
 import { addDoc, collection, getDocs, Timestamp } from "firebase/firestore";
 import db from "./FirebaseConfig";
+import StyledCreateAccount from "../styles/CreateAccount.styled";
+
 
 const CreateAccount = () => {
   const [formErrors, setFormErrors] = useState({});
@@ -109,7 +111,7 @@ const CreateAccount = () => {
   };
 
   return (
-    <div>
+    <StyledCreateAccount>
       <h2>Create an account</h2>
       <form onSubmit={submitForm}>
         <input
@@ -140,12 +142,14 @@ const CreateAccount = () => {
             type="radio"
             value="M"
             name="gender"
+            id="gender"
             checked={formDatas.gender === "M"}
             onChange={handleChange}
           />
           <span>Male</span>
           <input
             type="radio"
+            id="gender"
             value="F"
             name="gender"
             checked={formDatas.gender === "F"}
@@ -192,7 +196,7 @@ const CreateAccount = () => {
         <br />
         <button>Submit</button>
       </form>
-    </div>
+    </StyledCreateAccount>
   );
 };
 
