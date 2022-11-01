@@ -11,6 +11,7 @@ html{
         font-family: 'Sora', sans-serif;
         font-size: 16px;
         font-weight: 400;
+
     }
 `
 

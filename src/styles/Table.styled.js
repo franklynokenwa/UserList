@@ -4,11 +4,10 @@ const StyledTable = styled.table`
     width: 800px;
     text-align: left;
     border-collapse: collapse;
-    margin: 8px;
 
     thead{
         background-color: #E8E8E8;
-;
+
     }
     tbody{
         background-color: white;
@@ -17,7 +16,7 @@ const StyledTable = styled.table`
         font-weight: 700;
     }
     th,td{
-        border: 1px solid black;
+        border: 1px solid #CDCDCD;
         height: 51px;
         padding-left: 26px;
 

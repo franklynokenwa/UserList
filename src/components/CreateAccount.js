@@ -116,60 +116,57 @@ const CreateAccount = () => {
       <form onSubmit={submitForm}>
         <input
           type="text"
-          placeholder="first name"
+          placeholder="First Name"
           id="firstName"
           name="firstName"
           onChange={handleChange}
           value={formDatas?.firstName}
         />
         <br />
-        <p>{formErrors?.firstNameError}</p>
-        <br />
+        <p className="errorMessage">{formErrors?.firstNameError}</p>
         <input
           type="text"
-          placeholder="last name"
+          placeholder="Last Name"
           id="lastName"
           name="lastName"
           onChange={handleChange}
           value={formDatas?.lastName}
         />
         <br />
-        <p>{formErrors?.lastNameError}</p>
-        <br />
+        <p className="errorMessage">{formErrors?.lastNameError}</p>
 
-        <div>
+        <div className="radioButton">
           <input
             type="radio"
             value="M"
             name="gender"
-            id="gender"
+            id="radioMale"
             checked={formDatas.gender === "M"}
             onChange={handleChange}
           />
-          <span>Male</span>
+          <label htmlFor="radioMale">Male</label>
           <input
             type="radio"
-            id="gender"
+            id="radioFemale"
             value="F"
             name="gender"
             checked={formDatas.gender === "F"}
             onChange={handleChange}
           />
-          <span>Female</span>
+          <label htmlFor="radioFemale">Female</label>
         </div>
-        <p>{formErrors?.genderError}</p>
+        <p className="errorMessage">{formErrors?.genderError}</p>
 
         <input
           type="text"
-          placeholder="email address"
+          placeholder="Email Address"
           id="emailAddress"
           name="emailAddress"
           onChange={handleChange}
           value={formDatas?.emailAddress}
         />
         <br />
-        <p>{formErrors?.emailAddressError}</p>
-        <br />
+        <p className="errorMessage">{formErrors?.emailAddressError}</p>
 
         <input
           type="tel"
@@ -180,8 +177,7 @@ const CreateAccount = () => {
           value={formDatas?.mobileNumber}
         />
         <br />
-        <p>{formErrors?.mobileNumberError}</p>
-        <br />
+        <p className="errorMessage">{formErrors?.mobileNumberError}</p>
 
         <input
           type="text"
@@ -192,8 +188,8 @@ const CreateAccount = () => {
           value={formDatas?.nationality}
         />
         <br />
-        <p>{formErrors?.nationalityError}</p>
-        <br />
+        <p className="errorMessage">{formErrors?.nationalityError}</p>
+        
         <button>Submit</button>
       </form>
     </StyledCreateAccount>
