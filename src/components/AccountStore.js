@@ -2,7 +2,7 @@ import create from "zustand";
 
 const AccountStore = create((set) => ({
     accounts: "",
-    formData: "",
+    formData: [],
         
     updatedAccounts: (newAccounts) => set((state) => ({
         accounts: state.newAccounts = newAccounts

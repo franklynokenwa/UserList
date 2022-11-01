@@ -1,15 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
 import StyledAccountList from "../styles/AccountList.styled";
 import AccountStore from "./AccountStore";
+import db from "./FirebaseConfig";
 
 const AccountList = () => {
   const accounts = AccountStore((state) => state.accounts);
-  const formData = AccountStore((state) => state.formData);
 
   const updatedAccounts = AccountStore((state) => state.updatedAccounts);
-  const updatedFormData = AccountStore((state) => state.updatedFormData);
+  const [userAccount, setUserAccount] = useState("");
+
+  useEffect(() => {
+    const q = query(collection(db, "users"), orderBy("created", "asc"));
+    onSnapshot(q, (querySnapshot) => {
+      setUserAccount(
+        querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
 
   const API_URL =
     "https://raw.githubusercontent.com/OtegaOvie/StaticDataset/main/accounts.json";
@@ -18,7 +31,6 @@ const AccountList = () => {
     const response = await axios.get(API_URL);
     return response.data;
   });
-  console.log(typeof data);
   updatedAccounts(data);
 
   if (isLoading) return <h1 style={{ color: "white" }}>Loading...</h1>;
@@ -32,7 +44,7 @@ const AccountList = () => {
 
   return (
     <StyledAccountList>
-        <caption>List of accounts</caption>
+      <caption>List of accounts</caption>
       <thead>
         <tr>
           <th>Full Name</th>
@@ -42,7 +54,7 @@ const AccountList = () => {
           <th>Nationality</th>
         </tr>
       </thead>
-      {accounts.map((item) => {
+      {accounts?.map((item) => {
         const {
           emailAddress,
           firstName,
@@ -53,7 +65,7 @@ const AccountList = () => {
         } = item;
 
         return (
-          <tbody key={mobileNumber}> 
+          <tbody key={mobileNumber}>
             <tr>
               <td>{firstName + " " + lastName}</td>
               <td>{gender}</td>
@@ -64,6 +76,26 @@ const AccountList = () => {
           </tbody>
         );
       })}
+      {userAccount.length !== 0
+        ? userAccount?.map((item) => {
+            const { data } = item;
+            return (
+              <tbody key={data.userInputData?.mobileNumber}>
+                <tr>
+                  <td>
+                    {data.userInputData?.firstName +
+                      " " +
+                      data.userInputData?.lastName}
+                  </td>
+                  <td>{data.userInputData?.gender}</td>
+                  <td>{data.userInputData?.emailAddress}</td>
+                  <td>{data.userInputData?.mobileNumber}</td>
+                  <td>{data.userInputData?.nationality}</td>
+                </tr>
+              </tbody>
+            );
+          })
+        : null}
     </StyledAccountList>
   );
 };
