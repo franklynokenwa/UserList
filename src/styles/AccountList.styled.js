@@ -1,21 +1,11 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
-const StyledAccountList = styled.table`
-    max-width: 100%;
-    text-align: left;
-    border-collapse: collapse;
-    margin: 8px;
-
-    thead{
-        background-color: #E8E8E8;
-;
-    }
-    th,td{
-        border: 1px solid black;
-
-    }
-
-
+const StyledAccountList = styled.section`
+    background-color: #987899;
+    width: 888px;
+    padding-left: 78px;
+    padding-top: 89px;
+    height: 100vh;
 `
 
 export default StyledAccountList
